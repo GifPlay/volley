@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="5dp"
-    android:layout_margin="0dp">
+    android:layout_margin="0dp"
+    android:orientation="vertical">
 
 
     <androidx.cardview.widget.CardView
@@ -26,19 +27,14 @@
             >
             <TextView
                 android:id="@+id/idNameImage"
-                android:layout_width="87dp"
-                android:layout_height="65dp"
-                android:paddingTop="5dp"
-                android:textColor="@color/purple_700"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:textSize="0sp"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="34dp"
                 tools:ignore="MissingConstraints" />
             <TextView
                 android:id="@+id/idPersonal"
-                android:layout_width="87dp"
-                android:layout_height="65dp"
-                android:paddingTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:textSize="0sp"
                 tools:ignore="MissingConstraints" />
 
@@ -91,12 +87,31 @@
                     android:textSize="12sp"
                     android:textAlignment="textEnd"
                     />
-
-
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/idScanText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/scan_text"
+            android:layout_margin="10dp"
+            android:textSize="15sp">
+
+        </TextView>
+
+
+    <Button
+        android:id="@+id/btnEscanear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="openScan"
+        android:text="@string/escanear"
+        android:textColor="@color/white" />
+
+
 
 </LinearLayout>

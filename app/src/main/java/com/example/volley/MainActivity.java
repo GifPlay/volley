@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     RequestQueue queue;
     String url="https://raw.githubusercontent.com/GifPlay/ServerJSON/main/personal.json";
-
+    //String url="http://192.168.0.101/eTextil/index.php/webService/wsPersonal";
     String rNombre;
     String rTelefono;
     String rStatus;
