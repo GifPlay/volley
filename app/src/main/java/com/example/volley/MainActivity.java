@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -96,7 +97,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                     }
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                   // e.printStackTrace();
+                    FancyToast.makeText(MainActivity.this, e.toString(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
 
                 }
 
@@ -109,8 +111,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
-                Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                FancyToast.makeText(MainActivity.this, error.toString(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                //Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_LONG).show();
             }
         });
         /* No ejecuta nada despues de este código*/

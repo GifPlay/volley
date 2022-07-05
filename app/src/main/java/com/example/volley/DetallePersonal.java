@@ -25,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -138,7 +139,9 @@ public class DetallePersonal extends AppCompatActivity {
         //Obtener información en String
         if (result != null) {
             if (result.getContents() == null) {
-                Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show();
+             //  Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show();
+                //MotionToast
+              FancyToast.makeText(this, "¡Escaneo cancelado!", FancyToast.LENGTH_LONG, FancyToast.WARNING, false).show();
             } else {
                 datos = result.getContents();
                 tvScanText.setText("Código: " + datos);
@@ -158,9 +161,18 @@ public class DetallePersonal extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET, urlPost2, null, response -> {
                     try {
-                        String txt = response.getString("result");
+                        String rtxt = response.getString("result");
+                        String rMessage = response.getString("message");
 
-                        Toast.makeText(DetallePersonal.this, txt, Toast.LENGTH_LONG).show();
+
+                        if (rtxt.equals("ok")){
+                            FancyToast.makeText(this, rMessage, FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+                        }else if(rtxt.equals("info")){
+                            FancyToast.makeText(this, rMessage, FancyToast.LENGTH_LONG, FancyToast.INFO, false).show();
+                        }else{
+                            FancyToast.makeText(this, rMessage, FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                        }
+
                         ListaCupon.clear();
                         getDataCupones(IdPersonal);
                         urlPost2= urlOriginal;
@@ -168,7 +180,7 @@ public class DetallePersonal extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                }, error -> Toast.makeText(DetallePersonal.this, error.toString(), Toast.LENGTH_LONG).show()
+                }, error ->  FancyToast.makeText(this, error.toString(), FancyToast.LENGTH_LONG, FancyToast.WARNING, false).show()
         );
         /* No ejecuta nada despues de este código*/
         datos ="";
@@ -200,14 +212,17 @@ public class DetallePersonal extends AppCompatActivity {
                             ListaCupon.add(new Cupon(rOrden, rBulto, rTalla, rOperacion, rCosto, rCantidad));
                         }
                     } catch (JSONException e) {
-                        e.printStackTrace();
+
+                        FancyToast.makeText(this, e.toString(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                     }
 
                     /* Termina el response*/
 
                     cuponAdapter = new CuponAdapter(ListaCupon);
                     recyclerView.setAdapter(cuponAdapter);
-                }, error -> Toast.makeText(DetallePersonal.this, error.toString(), Toast.LENGTH_LONG).show());
+                }, error ->  FancyToast.makeText(this, error.toString(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show()
+        );
+
         /* No ejecuta nada despues de este código*/
         queue.add(jsonObjectRequest);
     }
