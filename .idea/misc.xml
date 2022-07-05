@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/projectos-android/volley/app/src/main/res/drawable/ic_baseline_area_chart_24.xml" value="0.245" />
         <entry key="..\:/projectos-android/volley/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.2165" />
-        <entry key="..\:/projectos-android/volley/app/src/main/res/layout/activity_detalle_personal.xml" value="0.3103448275862069" />
+        <entry key="..\:/projectos-android/volley/app/src/main/res/layout/activity_detalle_personal.xml" value="0.22" />
         <entry key="..\:/projectos-android/volley/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/projectos-android/volley/app/src/main/res/layout/activity_productividad.xml" value="0.1" />
         <entry key="..\:/projectos-android/volley/app/src/main/res/layout/cupon_list.xml" value="0.31476449275362317" />
         <entry key="..\:/projectos-android/volley/app/src/main/res/layout/item_list.xml" value="0.33" />
       </map>

@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.shashank.sony.fancytoastlib.FancyToast;
@@ -43,6 +44,7 @@ public class DetallePersonal extends AppCompatActivity {
     ImageView ivFotografia;
     TextView tvNombreImage;
     TextView tvScanText;
+    FloatingActionButton btnProductividad;
     RecyclerView recyclerView;
     RequestQueue queue;
     //String url = "https://raw.githubusercontent.com/GifPlay/ServerJSON/main/cupones.json";
@@ -115,10 +117,24 @@ public class DetallePersonal extends AppCompatActivity {
         ListaCupon = new ArrayList<>();
         getDataCupones(idPersonal);
 
+        btnProductividad = (FloatingActionButton) findViewById(R.id.floating_action_button);
+
+        btnProductividad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(DetallePersonal.this, ProductividadActivity.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("IdPersonal", idPersonal);
+                bundle1.putString("Nombre", bundle.getString("Nombre"));
+
+                intent1.putExtras(bundle1);
+                startActivity(intent1);
+            }
+        });
+
     }
 
-
-    //Metodo on click
+    //Metodo on click para abrir el scaner
     public void openScan(View view) {
         if (view.getId() == R.id.btnEscanear) {
             IntentIntegrator integrator = new IntentIntegrator(this);
@@ -146,7 +162,6 @@ public class DetallePersonal extends AppCompatActivity {
                 datos = result.getContents();
                 tvScanText.setText("Código: " + datos);
                 setDataCupones(idPersonal, datos);
-                datos = null;
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -156,14 +171,12 @@ public class DetallePersonal extends AppCompatActivity {
     private void setDataCupones(String IdPersonal, String cupon) {
         // http://192.168.0.101/eTextil/index.php/webService/saveCupon?Cupon=1996-15-27-150-4&Empleado=2
         urlPost2 = urlPost2 + "Cupon=" + cupon + "&Empleado=" + IdPersonal;
-        System.out.println(cupon);
-        System.out.println(urlPost2);
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET, urlPost2, null, response -> {
                     try {
                         String rtxt = response.getString("result");
                         String rMessage = response.getString("message");
-
 
                         if (rtxt.equals("ok")){
                             FancyToast.makeText(this, rMessage, FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
@@ -172,14 +185,13 @@ public class DetallePersonal extends AppCompatActivity {
                         }else{
                             FancyToast.makeText(this, rMessage, FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                         }
-
                         ListaCupon.clear();
                         getDataCupones(IdPersonal);
+                        /* Se regresa la url original y no se sobre escriba */
                         urlPost2= urlOriginal;
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
                 }, error ->  FancyToast.makeText(this, error.toString(), FancyToast.LENGTH_LONG, FancyToast.WARNING, false).show()
         );
         /* No ejecuta nada despues de este código*/
@@ -198,9 +210,7 @@ public class DetallePersonal extends AppCompatActivity {
                     try {
                         JSONArray jsonArray = response.getJSONArray("cupones");
                         int size = jsonArray.length();
-
                         for (int i = 0; i < size; i++) {
-
                             JSONObject arrayCupon = (JSONObject) jsonArray.get(i);
                             rOrden = arrayCupon.get("Corte").toString();
                             rBulto = arrayCupon.get("Bulto").toString();
@@ -208,11 +218,9 @@ public class DetallePersonal extends AppCompatActivity {
                             rOperacion = arrayCupon.get("Operacion").toString();
                             rCosto = arrayCupon.get("Costo").toString();
                             rCantidad = arrayCupon.get("CantidadBulto").toString();
-
                             ListaCupon.add(new Cupon(rOrden, rBulto, rTalla, rOperacion, rCosto, rCantidad));
                         }
                     } catch (JSONException e) {
-
                         FancyToast.makeText(this, e.toString(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                     }
 
@@ -226,6 +234,5 @@ public class DetallePersonal extends AppCompatActivity {
         /* No ejecuta nada despues de este código*/
         queue.add(jsonObjectRequest);
     }
-
 
 }
