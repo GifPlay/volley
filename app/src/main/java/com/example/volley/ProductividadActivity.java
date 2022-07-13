@@ -14,7 +14,7 @@ import java.util.Objects;
 public class ProductividadActivity extends AppCompatActivity {
 
     TextView tvIdPersonal;
-    String url ="http://192.168.0.101/eTextil/index.php/webService/wsProductividad?Empleado=";
+    String url ="http://172.22.16.4/etextil/index.php/webService/wsProductividad?Empleado=";
 
 
     @SuppressLint("SetTextI18n")

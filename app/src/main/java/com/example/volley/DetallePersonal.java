@@ -48,9 +48,9 @@ public class DetallePersonal extends AppCompatActivity {
     RecyclerView recyclerView;
     RequestQueue queue;
     //String url = "https://raw.githubusercontent.com/GifPlay/ServerJSON/main/cupones.json";
-    String url = "http://192.168.0.101/eTextil/index.php/webService/wsCupones/";
-    String urlPost2 = "http://192.168.0.101/eTextil/index.php/webService/saveCupon?";
-    String urlPost = "http://192.168.0.101/eTextil/index.php/webService/saveCupon?Cupon=1996-15-27-150-4&Empleado=2";
+    String url = "http://172.22.16.4/etextil/index.php/webService/wsCupones/";
+    String urlPost2 = "http://172.22.16.4/etextil/index.php/webService/saveCupon?";
+    String urlPost = "http://172.22.16.4/etextil/index.php/webService/saveCupon?Cupon=1996-15-27-150-4&Empleado=2";
     String urlOriginal = urlPost2;
 
     /* Información para la peticion de cupones Volley*/
