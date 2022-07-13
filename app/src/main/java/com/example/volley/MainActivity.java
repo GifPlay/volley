@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     PersonalAdapter personalAdapter;
 
     RequestQueue queue;
-    String url="https://raw.githubusercontent.com/GifPlay/ServerJSON/main/personal.json";
-    //String url="http://192.168.0.101/eTextil/index.php/webService/wsPersonal";
+    //String url="https://raw.githubusercontent.com/GifPlay/ServerJSON/main/personal.json";
+    String url="http://172.22.16.4/etextil/index.php/WebService/wsEmpleado?Empleado=";
     String rNombre;
     String rTelefono;
     String rStatus;
@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     String rPuesto;
     String rIdPersonal;
 
+
+    String bIdPersonal;
+    String bNombre;
 
 
     @Override
@@ -54,6 +57,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         /* Busqueda de datos */
         txtBuscar = findViewById(R.id.idBusqueda);
 
+        /* Bundle pasada de datos*/
+        Bundle bundle = this.getIntent().getExtras();
+
+        bIdPersonal = bundle.getString("IdPersonal").toString();
+
         ListaPersonal = new ArrayList<>();
 
         recyclerView = (RecyclerView) findViewById(R.id.idRecycler);
@@ -62,15 +70,15 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         txtBuscar.setOnQueryTextListener(this);
 
-        getData();
+        getData(bIdPersonal);
 
 
 
     }
 
-    private void getData(){
+    private void getData(String bIdPersonal){
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.GET, url,null, new Response.Listener<JSONObject>() {
+                Request.Method.GET, url+bIdPersonal,null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 

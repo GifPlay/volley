@@ -48,9 +48,9 @@ public class DetallePersonal extends AppCompatActivity {
     RecyclerView recyclerView;
     RequestQueue queue;
     //String url = "https://raw.githubusercontent.com/GifPlay/ServerJSON/main/cupones.json";
-    String url = "http://192.168.0.101/eTextil/index.php/webService/wsCupones/";
-    String urlPost2 = "http://192.168.0.101/eTextil/index.php/webService/saveCupon?";
-    String urlPost = "http://192.168.0.101/eTextil/index.php/webService/saveCupon?Cupon=1996-15-27-150-4&Empleado=2";
+    String url = "http://172.22.16.4/etextil/index.php/WebService/wsCupones/";
+    String urlPost2 = "http://172.22.16.4/etextil/index.php/WebService/saveCupon?";
+    String urlPost = "http://172.22.16.4/etextil/index.php/WebService/saveCupon?Cupon=1996-15-27-150-4&Empleado=2";
     String urlOriginal = urlPost2;
 
     /* Información para la peticion de cupones Volley*/
@@ -179,11 +179,11 @@ public class DetallePersonal extends AppCompatActivity {
                         String rMessage = response.getString("message");
 
                         if (rtxt.equals("ok")){
-                            FancyToast.makeText(this, rMessage, FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+                            FancyToast.makeText(this, rMessage, FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
                         }else if(rtxt.equals("info")){
-                            FancyToast.makeText(this, rMessage, FancyToast.LENGTH_LONG, FancyToast.INFO, false).show();
+                            FancyToast.makeText(this, rMessage, FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
                         }else{
-                            FancyToast.makeText(this, rMessage, FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                            FancyToast.makeText(this, rMessage, FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show();
                         }
                         ListaCupon.clear();
                         getDataCupones(IdPersonal);

@@ -14,7 +14,7 @@ import java.util.Objects;
 public class ProductividadActivity extends AppCompatActivity {
 
     TextView tvIdPersonal;
-    String url ="http://192.168.0.101/eTextil/index.php/webService/wsProductividad?Empleado=";
+    String url ="http://172.22.16.4/etextil/index.php/WebService/wsProductividad?Empleado=";
 
 
     @SuppressLint("SetTextI18n")
@@ -30,8 +30,6 @@ public class ProductividadActivity extends AppCompatActivity {
         tvIdPersonal = findViewById(R.id.idPersonal);
       tvIdPersonal.setText(bundle.getString("Nombre"));
       String idPersonal = bundle.getString("IdPersonal");
-
-
 
         WebView webView = (WebView) findViewById(R.id.grafica_personal);
 
