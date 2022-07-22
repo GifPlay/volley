@@ -19,14 +19,25 @@
 
     </SearchView>
 
+    <Button
+        android:id="@+id/btnEscanear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="openScan"
+        android:text="@string/escanearEmpleado"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/idBusqueda"
+        tools:layout_editor_absoluteX="16dp" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idBusqueda"
+        app:layout_constraintTop_toBottomOf="@+id/btnEscanear"
         tools:ignore="MissingConstraints"
 
         />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

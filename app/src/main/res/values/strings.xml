@@ -5,6 +5,7 @@
     <string name="image_empleado">Fotografia del empleado</string>
     <string name="info_empleado">Información del empleado</string>
     <string name="escanear">Escanear</string>
+    <string name="escanearEmpleado">Escanear código de empleado</string>
     <string name="scan_text">Escanee un código de barras</string>
     <string name="view_productividad">Visualizar productividad</string>
 </resources>
